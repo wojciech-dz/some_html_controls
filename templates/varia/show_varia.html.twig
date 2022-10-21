@@ -1,0 +1,11 @@
+{% block body %}
+    
+<div class="example-wrapper">
+    <h1>Różne kontrolki HTML</h1>
+
+    {{ include('varia/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_main') }}">back to list</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Lista delegacji</h1>
+
+    <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-c2y4">Lp.</th>
+        <th class="tg-c2y4">Pracownik</th>
+        <th class="tg-c2y4">Data wyjazdu</th>
+        <th class="tg-c2y4">Data powrotu</th>
+        <th class="tg-c2y4">Miejsce wyjazdu</th>
+        <th class="tg-c2y4">Miejsce docelowe</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in delegations %}
+          <tr class= {{ loop.index is divisible by 2 ? "tg-m9r4" : "tg-w747" }}>
+              <td>{{ loop.index }}</td>
+              <td>{{ v.employee.name }} {{ v.employee.surname }}</td>
+              <td>{{ v.dateFrom|format_datetime('long', 'none', locale='pl') }}</td>
+              <td>{{ v.dateTo|format_datetime('long', 'none', locale='pl') }}</td>
+              <td>{{ v.start }}</td>
+              <td>{{ v.finish }}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+
+    {% include 'picker.html.twig' %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmployeesController!{% endblock %}
+
+{% block menu %}
+    {{ include('/menu.html.twig') }}
+{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-w747{background-color:#dae8fc;text-align:left;vertical-align:top}
+    .tg .tg-5qug{background-color:#aeefae;color:#cb0000;text-align:left;vertical-align:top}
+    .tg .tg-m9r4{background-color:#ffffc7;text-align:left;vertical-align:top}
+</style>
+
+<div class="example-wrapper">
+    <h1>Lista pracowników</h1>
+
+    <table class="tg">
+    <thead>
+      <tr class="tg-5qug">
+        <th>Lp.</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Stanowisko</th>
+        <th>Data zatrudnienia</th>
+        <th>Ilość dni urlopowych</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in employees %}
+          <tr class= {{ loop.index is divisible by 2 ? "tg-m9r4" : "tg-w747" }}>
+              <td>{{ loop.index }}</td>
+              <td>{{ v.name }}</td>
+              <td>{{ v.surname }}</td>
+              <td>{{ v.position }}</td>
+              <td>{{ v.startDate|format_datetime('long', 'none', locale='pl') }}</td>
+              <td>{{ v.holiday }}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+
+    <p>Wybierz kolory tabeli:</p>
+
+    <div>
+        <input type="color" id="odd-row" name="odd-row"
+                value="#ffffc7">
+        <label for="body">Wiersze nieparzyste</label>
+    </div>
+
+    <div>
+        <input type="color" id="even-row" name="even-row"
+               value="#dae8fc">
+        <label for="head">Wiersze parzyste</label>
+    </div>
+
+</div>
+{% endblock %}

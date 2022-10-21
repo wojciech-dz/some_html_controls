@@ -1,0 +1,14 @@
+{# {% extends 'base.html.twig' %} #}
+
+{% block menu %}
+    <button class="menu-btn" id="app_varia" data-url="varia"
+       href="{{ path('app_varia') }}"><h3>Różne kontrolki HTML</h3></button>
+    <button class="menu-btn" id="app_employees" data-url="employees-list"
+       href="{{ path('app_employees') }}"><h3>Tabela Pracowników</h3></button>
+    <button class="menu-btn" id="app_invoices" data-url="invoices-list"
+       href="{{ path('app_invoices') }}"><h3>Tabela Faktur VAT</h3></button>
+    <button class="menu-btn" id="app_delegations" data-url="delegations-list"
+       href="{{ path('app_delegations') }}"><h3>Tabela Delegacji BD</h3></button>
+    <button class="menu-btn" id="app_clients" data-url="clients-list"
+       href="{{ path('app_clients') }}"><h3>Dane Kontrahentów</h3></button>
+{% endblock %}

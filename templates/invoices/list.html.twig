@@ -1,0 +1,58 @@
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Lista kontrahentów</h1>
+
+    <table class="tg">
+      <thead>
+        <tr>
+          <th class="tg-c2y4">Lp.</th>
+          <th class="tg-c2y4">Opis</th>
+          <th class="tg-c2y4">MPK</th>
+          <th class="tg-c2y4">Kwota Netto</th>
+          <th class="tg-c2y4">Ilość</th>
+          <th class="tg-c2y4">VAT</th>
+          <th class="tg-c2y4">Kwota Brutto</th>
+          <th class="tg-c2y4">Wartość Netto</th>
+          <th class="tg-c2y4">Wartość Brutto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for v in invoices %}
+            <tr class= {{ loop.index is divisible by 2 ? "tg-m9r4" : "tg-w747" }}>
+                <td>{{ loop.index }}</td>
+                <td>{{ v.description }}</td>
+                <td>{{ v.mpk }}</td>
+                <td><input type="number" class="calc-in" id="net_{{ loop.index }}" value={{ v.net }}></td>
+                <td><input type="number" class="calc-in" id="volume_{{ loop.index }}" value={{ v.volume }}></td>
+                <td>
+                  <select class="calc-in" id="vat-rate_{{ loop.index }}" selected={{ v.vat }}>
+                    {% for rkey, rval in rates %}
+                      <option value={{ rval }}>{{ rkey }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td><input type="number" class="calc-out" id="gross_{{ loop.index }}" disabled=true value={{ v.gross }}></td>
+                <td><input type="number" class="calc-out" id="total-net_{{ loop.index }}" disabled=true value={{ v.totalNet }}></td>
+                <td><input type="number" class="calc-out" id="total-gross_{{ loop.index }}" disabled=true value={{ v.totalGross }}></td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p>Wybierz kolory tabeli:</p>
+
+    <div>
+        <input type="color" id="odd-row" name="odd-row"
+                value="#ffffc7">
+        <label for="body">Wiersze nieparzyste</label>
+    </div>
+
+    <div>
+        <input type="color" id="even-row" name="even-row"
+               value="#dae8fc">
+        <label for="head">Wiersze parzyste</label>
+    </div>
+
+</div>
+{% endblock %}
